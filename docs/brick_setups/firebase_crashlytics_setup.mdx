@@ -1,0 +1,72 @@
+---
+next: /add_new_brick.mdx
+nextTitle: Neue Brick implementieren
+previous: /brick_setups/firebase_remote_config_setup.mdx
+previousTitle: Internationalisation mit Firebase Remote Config
+---
+# Firebase Crashlytics Setup
+
+Du hast es fast geschafft! (Fast) alle nötigen Files sind generiert, es fehlen nur noch ein paar wenige kleine Schritte, bis du die Firebase Crashlytics nutzen kannst!
+
+## Todos
+
+- Hast du schon FirebaseOptions generieren lassen? Bzw. die App überhaupt mit einem Firebase Projekt verbunden? Wenn nein, dann mach das jetzt! Dazu empfehle ich das Verwenden der [FlutterFire CLI][flutterfire-cli-link]. Sobald du sie installiert hast, führe
+
+```bash
+flutterfire configure
+```
+
+im Root-Verzeichnis deiner App aus. Folge den Anweisungen und wähle dein Firebase Projekt aus. Wenn du das gemacht hast, kannst du folgende Zeilen in ```main.dart``` auskommentieren:
+
+ ```dart
+//import 'package:{{project_name}}/firebase_options.dart';
+
+...
+
+// await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+```
+
+- Versuche jetzt, die App zu bauen und zu nutzen. Funktioniert? Dann direkt weiter zum [nächsten](#usage) Schritt.
+
+- Funktioniert nicht? Das liegt oft an den Pods. Nutze dafür das praktische ```pods_machen_faxen.sh``` Skript!
+
+- Funktioniert immer noch nicht? Pods brauchen manchmal etwas tough love. Navigiere dazu in das ```lib/ios``` Verzeichnis deines Projekts und führe dazu folgenden Befehl aus:
+
+```bash
+arch -x86_64 pod install --repo-update
+```
+
+- Auch nicht geklappt? Hast du vielleicht das Theme Switching Feature auch generieren lassen? Das arbeitet nämlich mit ```HydratedBlocOverrides.runZoned()``` und lässt dich keine ```onError```-Funktion deklarieren, wie das normale ```runZonedGuarded()```... Eventuell hier eine kleine Bugfix-Session einlegen?
+
+- Das klappt auch nicht? Dann ist dir ein neuer Bug aufgefallen, den ich noch nicht kannte. Träumchen wäre, wenn du ihn mir gefixt als Pull Request zukommen lässt, wir können aber natürlich auch darüber quatschen und ihn gemeinsam fixen 🙄
+
+## Usage
+
+### Erste Exception 👶🏻
+
+Probiere direkt aus, ob die Fehlermeldungen auch wirklich ankommen. Dazu kannst du einfach eine Exception über einen Dummybutton werfen, z.B.:
+
+```dart
+TextButton(
+    onPressed: () => throw Exception(),
+    child: const Text("Throw Test Exception"),
+),
+```
+
+Ich hatte beim Entwickeln mal den Bug, dass die Fehlermeldungen von ```StatefulWidgets``` aus kommend nicht losgeschickt worden sind. Packe dazu die Exception in einen ```try/catch``` - Block und schicke sie manuell los:
+
+```dart
+try{
+    /// do stuff
+}catch(e, s){
+    handleError(error: e, stackTrace: s); /// diese Funktion ist im core Ordner definert!
+}
+```
+
+### Crash Logs customizen
+
+- Für ganz viel Info aktiviere Google Analytics in der Firebase Konsole des Projekts.
+- Mehr Infos zu ganz wilden Customisations, findest du [hier][firebase-crashlytics-link].
+
+[flutterfire-cli-link]: https://firebase.flutter.dev/docs/cli/
+[firebase-crashlytics-link]: https://firebase.google.com/docs/crashlytics/customize-crash-reports?authuser=0&platform=flutter

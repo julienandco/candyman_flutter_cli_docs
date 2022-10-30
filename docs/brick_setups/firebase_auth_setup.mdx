@@ -1,0 +1,41 @@
+---
+next: /brick_setups/firebase_remote_config_setup.mdx
+nextTitle: Internationalisation mit Firebase Remote Config
+previous: /index.mdx
+previousTitle: Die CLI
+---
+# Firebase Auth Setup
+
+Du hast es fast geschafft! (Fast) alle nötigen Files sind generiert, es fehlen nur noch ein paar wenige kleine Schritte, bis du die Firebase Authentication nutzen kannst!
+
+## Todos
+
+- Hast du schon FirebaseOptions generieren lassen? Bzw. die App überhaupt mit einem Firebase Projekt verbunden? Wenn nein, dann mach das jetzt! Dazu empfehle ich das Verwenden der [FlutterFire CLI][flutterfire-cli-link]. Sobald du sie installiert hast, führe
+
+```bash
+flutterfire configure
+```
+
+im Root-Verzeichnis deiner App aus. Folge den Anweisungen und wähle dein Firebase Projekt aus. Wenn du das gemacht hast, kannst du folgende Zeilen in ```main.dart``` auskommentieren:
+
+ ```dart
+//import 'package:{{project_name}}/firebase_options.dart';
+
+...
+
+// await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+```
+
+- Aktiviere in der FirebaseConsole die Authentication via Email und Passwort. Solltest du eine andere Methode nutzen wollen, musst du natürlich auch die Implementierung in der ```AuthDataSource```, dem ```AuthRepositoryImpl```, in den beiden Blocs (```LoginBloc``` und ```SignUpBloc```) und anderen Files (z.B Use-Cases etc.) anpassen.
+
+- Versuche jetzt, die App zu bauen und zu nutzen. Funktioniert? Schmeckt!
+
+- Funktioniert nicht? Das liegt oft an den Pods. Navigiere dazu in das ```lib/ios``` Verzeichnis deines Projekts und führe dazu folgenden Befehl aus:
+
+```bash
+arch -x86_64 pod install --repo-update
+```
+
+- Funktioniert immer noch nicht? Dann ist dir ein neuer Bug aufgefallen, den ich noch nicht kannte. Träumchen wäre, wenn du ihn mir gefixt als Pull Request zukommen lässt, wir können aber natürlich auch darüber quatschen und ihn gemeinsam fixen 🙄
+
+[flutterfire-cli-link]: https://firebase.flutter.dev/docs/cli/

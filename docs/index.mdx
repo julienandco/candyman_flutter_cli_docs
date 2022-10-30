@@ -1,0 +1,67 @@
+---
+next: /brick_setups/firebase_auth_setup.mdx
+nextTitle: Firebase Auth Setup
+---
+
+# Candyman Flutter CLI
+
+Developed mit 💙 vom Candyman
+
+---
+
+Ein Command Line Interface für Dart, das nur ein Gas kennt.
+
+## Installieren
+
+Clone dir das Repo (am besten direkt in dein Root-Verzeichnis, damit es hier liegt: ```~/candyman_flutter_cli```, das erleichtert später den update Command). Jetzt musst du es nur noch global aktivieren:
+
+```sh
+dart pub global activate --source path pfad/zu/diesem/verzeichnis
+```
+
+Pro Tip: Falls du gerade im Verzeichnis bist, in das du das Repo geklont hast, dann funktioniert auch ein relativer Pfad:
+
+```sh
+dart pub global activate --source path ./candyman_flutter_cli
+```
+
+## Commands
+
+### `CANDYMAN abfahrt`
+
+Erstellt dir ein neues Flutter Projekt anhand des [Flutter Template Project][template_project_link]. Dauert ungefähr 3.5 Tornados 🍺
+
+```sh
+🥵 Ein absolutes High-Performer-Tool, vom wilden Typen für wilde Typen.
+
+Usage: CANDYMAN <command> [arguments]
+
+Global options:
+-h, --help       Print this usage information.
+    --version    Einmal die aktuelle Version to go bitte.
+
+Available commands:
+  abfahrt   CANDYMAN abfahrt <projektname>
+            Erstellt ein neues Projekt mit dem angegebenen Namen nach CANDYMAN Maßstäben (to the 🌝) im aktuellen Verzeichnis.
+```
+
+#### Wie funktioniert's?
+
+```sh
+# Erstelle eine neue App, die geile_app heißt:
+CANDYMAN abfahrt geile_app
+```
+
+#### Was lass ich mich hier auf die Platte schießen?
+
+Wenn du Fragen zur Implementierung von Features hast, schau dir gerne den Code des [Template Projekts][template_project_link] an oder frag mich (Julien) direkt!
+
+### `CANDYMAN --help`
+
+Für die Hilflosen unter uns.
+
+### Maintenance
+
+Solltest du mal zu den glücklichen Seelen gehören, die ein Update für die CLI pushen, dann vergiss nicht, in der ```pubspec.yaml``` die Versionsnummer je nach Change (breaking, major, minor) zu ändern und anschließend ```dart run build_runner build``` laufen zu lassen, damit sich ```lib/src/version.dart``` automagisch aktualisiert!
+
+[template_project_link]: https://github.com/julienandco/template_project

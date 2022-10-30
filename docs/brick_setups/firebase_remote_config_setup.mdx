@@ -1,0 +1,57 @@
+---
+next: /brick_setups/firebase_crashlytics_setup.mdx
+nextTitle: Firebase Crashlytics Setup
+previous: /brick_setups/firebase_auth_setup.mdx
+previousTitle: Firebase Auth Setup
+---
+# Firebase Remote Config Setup
+
+Du hast es fast geschafft! (Fast) alle nötigen Files sind generiert, es fehlen nur noch ein paar wenige kleine Schritte, bis du die Firebase Authentication nutzen kannst!
+
+## Todos
+
+- Hast du schon FirebaseOptions generieren lassen? Bzw. die App überhaupt mit einem Firebase Projekt verbunden? Wenn nein, dann mach das jetzt! Dazu empfehle ich das Verwenden der [FlutterFire CLI][flutterfire-cli-link]. Sobald du sie installiert hast, führe
+
+```bash
+flutterfire configure
+```
+
+im Root-Verzeichnis deiner App aus. Folge den Anweisungen und wähle dein Firebase Projekt aus. Wenn du das gemacht hast, kannst du folgende Zeilen in ```main.dart``` auskommentieren:
+
+ ```dart
+//import 'package:{{project_name}}/firebase_options.dart';
+
+...
+
+// await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+```
+
+- Die App solltest du zwar jetzt schon bauen und nutzen können, aber deine Remote Config ist natürlich noch leer! Damit das Ganze einen Sinn hat, fülle jetzt deine Remot Config mit Leben. Achte dabei darauf, dass du die Namensgebung einhältst, die du dem ```FirebaseRemoteConfigLocalizationLoader``` als Parameter ```buildRemoteConfigStringFromLocale``` übergeben hast!
+
+- Versuche jetzt, die App zu bauen und zu nutzen. Funktioniert? Schmeckt!
+
+- Funktioniert nicht? Das liegt oft an den Pods. Nutze dafür das praktische ```pods_machen_faxen.sh``` Skript!
+
+- Funktioniert immer noch nicht? Pods brauchen manchmal etwas tough love. Navigiere dazu in das ```lib/ios``` Verzeichnis deines Projekts und führe dazu folgenden Befehl aus:
+
+```bash
+arch -x86_64 pod install --repo-update
+```
+
+- Das klappt auch nicht? Dann ist dir ein neuer Bug aufgefallen, den ich noch nicht kannte. Träumchen wäre, wenn du ihn mir gefixt als Pull Request zukommen lässt, wir können aber natürlich auch darüber quatschen und ihn gemeinsam fixen 🙄
+
+- Zu guter Letzt: es kann gut sein, dass im Moment noch nichts von Firebase gefetched wird. Das liegt daran, dass eine leere Map als Remote Config Value gecached worden ist und in der ```main.dart``` folgendes steht:
+
+```dart
+ await remoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      //TODO: ändere diese Zeile z.B. auf 10 Sekunden, um initial zu fetchen
+      minimumFetchInterval: const Duration(hours: 1),
+    ),
+  );
+```
+
+Um das zu lösen, führe genau das TODO aus! Einmal auf einen sehr kleinen Wert setzen, App ausführen, damit im Hintergrund automagisch frisch gefetched und neu gecached wird (T-Shirt Slogan? 🤔) und dann wieder auf einen größeren Wert setzen, empfehlenswerterweise mindestens eine Stunde weil sonst der Geldbeutel schmerzt.
+
+[flutterfire-cli-link]: https://firebase.flutter.dev/docs/cli/
