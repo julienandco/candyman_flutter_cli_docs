@@ -4,13 +4,13 @@
     "favicon": "/assets/favicon.ico",
     "theme": "#FC6C85",
     "sidebar": [
-    ["🤖 Die CLI", "/index.mdx"],
+    ["🤖 Die CLI", "/index"],
     ["⚙️ Feature Setups", [
-        ["Firebase Auth", "/brick_setups/firebase_auth_setup.mdx"],
-        ["Internationalisation mit Firebase Remote Config", "/brick_setups/firebase_remote_config_setup.mdx"],
-        ["Firebase Crashlytics", "/brick_setups/firebase_crashlytics_setup.mdx"]
+        ["Firebase Auth", "/brick_setups/firebase_auth_setup"],
+        ["Internationalisation mit Firebase Remote Config", "/brick_setups/firebase_remote_config_setup"],
+        ["Firebase Crashlytics", "/brick_setups/firebase_crashlytics_setup"]
         ]
     ],
-    ["🧱 Neue Bricks zur CLI hinzufügen", "/add_new_brick.mdx"]
+    ["🧱 Neue Bricks zur CLI hinzufügen", "/add_new_brick"]
   ]
 }
