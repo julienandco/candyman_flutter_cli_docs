@@ -1,8 +1,8 @@
 {
     "name": "Candyman Flutter CLI",
-    "logo": "/cli_logo.png",
-    "favicon": "/favicon.ico",
-    "theme": "#fc6c85",
+    "logo": "/assets/cli_logo.png",
+    "favicon": "/assets/favicon.ico",
+    "theme": "#FC6C85",
     "sidebar": [
     ["🤖 Die CLI", "/index.mdx"],
     ["⚙️ Feature Setups", [
