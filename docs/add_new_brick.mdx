@@ -1,7 +1,7 @@
 ---
-next: /index.mdx
+next: /index
 nextTitle: Die CLI
-previous: /brick_setups/firebase_crashlytics_setup.mdx
+previous: /brick_setups/firebase_crashlytics_setup
 previousTitle: Firebase Crashlytics Setup
 ---
 ## Wie man eine neue Option zur CLI hinzufügt
@@ -22,13 +22,13 @@ Jetzt wird es eklig und du musst dein Feature in ein Brick übersetzen! Wenn du 
 
 Am Einfachsten ist es, wenn du beim Erstellen deines Bricks nur Brick-Variablen nutzt, die ein Verweis auf bereits bestehende Bricks sind (z.B. benötigt das Authentication mit eigenem Backend Feature die Info, ob der Toast Service verwendet wird. Eine Variable, die auch das Template Brick benötigt.)
 
-Natürlich kannst du auch neue Variablen deklarieren (s. dazu das User Feature Brick, das die Variable ```authentication_feature``` deklariert, weil es gewissen Widgets generiert, wenn irgendeine Auth vorhanden ist, sei es nun per eigenes Backend oder Firebase). Nutze hierfür die Funktion ```getAdditionalBrickVariables```, die du bei den ganzen Gettern in den den ```CreationOptions``` findest (mehr Infos dazu [unten](/add_new_brick#neue-creation-option-in-die-cli-einfügen)).
+Natürlich kannst du auch neue Variablen deklarieren (s. dazu das User Feature Brick, das die Variable ```authentication_feature``` deklariert, weil es gewissen Widgets generiert, wenn irgendeine Auth vorhanden ist, sei es nun per eigenes Backend oder Firebase). Nutze hierfür die Funktion ```getAdditionalBrickVariables```, die du bei den ganzen Gettern in den den ```CreationOptions``` findest (mehr Infos dazu [unten][new_creation_option_link]).
 
 #### Tests im Feature Brick
 
 Wenn du Tests implementiert hast (dicker 😘 an der Stelle), achte dabei bitte darauf, die Ordner-Struktur des *fertig generierten* Bricks zu kopieren! Beispiel: dein Brick wird folgendes File generieren: ```meine_app/lib/features/mein_feature/mein_feature.dart```. Und du hast den Inhalt von ```mein_feature.dart``` im File ```mein_feature_test.dart``` getestet. Dann muss der Test *nach Generierung* auch im Ordner ```meine_app/test/features/mein_feature/mein_feature_test.dart``` liegen.
 
-Deshalb solltest du *ALLE* Tests deines Features innerhalb deines Bricks in einen Ordner ```test``` packen (den Ordner kannst du auch anders nennen, mehr dazu unter **Neue Creation Option in die CLI einfügen**) und innerhalb dieses Ordners die Brickstruktur nachbauen.
+Deshalb solltest du *ALLE* Tests deines Features innerhalb deines Bricks in einen Ordner ```test``` packen (den Ordner kannst du auch anders nennen, mehr dazu [unten][new_creation_option_link]) und innerhalb dieses Ordners die Brickstruktur nachbauen.
 
 ### Pubspec Brick updaten (?!)
 
@@ -77,5 +77,6 @@ Führe die CLI jetzt aus und wähle deine neue Option aus. Funktioniert? Dann:
 🏎🏎🏎
 
 [template_project_link]: https://github.com/julienandco/template_project
-[cli_link]: /index.mdx
+[cli_link]: /index
+[new_creation_option_link]: /add_new_brick#neue-creation-option-in-die-cli-einfügen
 [mason_link]: https://pub.dev/packages/mason_cli
