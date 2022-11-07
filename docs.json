@@ -7,8 +7,9 @@
     ["🤖 Die CLI", "/index"],
     ["⚙️ Feature Setups", [
         ["Firebase Auth", "/brick_setups/firebase_auth_setup"],
-        ["Internationalisation mit Firebase Remote Config", "/brick_setups/firebase_remote_config_setup"],
-        ["Firebase Crashlytics", "/brick_setups/firebase_crashlytics_setup"]
+        ["Firebase Crashlytics", "/brick_setups/firebase_crashlytics_setup"],
+        ["Firebase Dynamic Links", "/brick_setups/firebase_dynamic_links_setup"],
+        ["Internationalisation mit Firebase Remote Config", "/brick_setups/firebase_remote_config_setup"]
         ]
     ],
     ["🧱 Neue Bricks zur CLI hinzufügen", "/add_new_brick"]
