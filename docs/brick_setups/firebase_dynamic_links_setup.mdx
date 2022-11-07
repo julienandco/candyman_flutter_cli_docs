@@ -1,12 +1,12 @@
 ---
-next: /brick_setups/firebase_dynamic_links_setup
-nextTitle: Dynamic Links mit Firebase
-previous: /brick_setups/firebase_auth_setup
-previousTitle: Firebase Auth Setup
+next: /brick_setups/firebase_remote_config_setup
+nextTitle: Firebase Remote Config Setup
+previous: /brick_setups/firebase_crashlytics_setup
+previousTitle: Firebase Crashlytics Setup
 ---
-# Firebase Crashlytics Setup
+# Firebase Dynamic Links Setup
 
-Du hast es fast geschafft! (Fast) alle nötigen Files sind generiert, es fehlen nur noch ein paar wenige kleine Schritte, bis du die Firebase Crashlytics nutzen kannst!
+Du hast es fast geschafft! (Fast) alle nötigen Files sind generiert, es fehlen nur noch ein paar wenige kleine Schritte, bis du die Firebase Dynamic Links nutzen kannst!
 
 ## Todos
 
@@ -26,6 +26,8 @@ im Root-Verzeichnis deiner App aus. Folge den Anweisungen und wähle dein Fireba
 // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 ```
 
+- Aktiviere in der Firebase Console die Dynamic Links. Anschließend kannst du alle ```TODOs``` in ```app_settings.dart``` und in den ```feature/share/```-Files abhaken.
+
 - Versuche jetzt, die App zu bauen und zu nutzen. Funktioniert? Dann direkt weiter zum [nächsten](#usage) Schritt.
 
 - Funktioniert nicht? Das liegt oft an den Pods. Nutze dafür das praktische ```pods_machen_faxen.sh``` Skript!
@@ -42,31 +44,13 @@ arch -x86_64 pod install --repo-update
 
 ## Usage
 
-### Erste Exception 👶🏻
+### Erster Dynamic Link 👶🏻
 
-Probiere direkt aus, ob die Fehlermeldungen auch wirklich ankommen. Dazu kannst du einfach eine Exception über einen Dummybutton werfen, z.B.:
+Probiere direkt aus, ob die Deep Links auch wirklich funktionieren. Implementiere dazu den ```DynamicLinkService``` und ```ShareService```. Anschließend kannst du über den HomeScreen einen Share Link generieren lassen (weil da schon ein ActionButton auf dich wartet).
 
-```dart
-TextButton(
-    onPressed: () => throw Exception(),
-    child: const Text("Throw Test Exception"),
-),
-```
+### Mehr Infos
 
-Ich hatte beim Entwickeln mal den Bug, dass die Fehlermeldungen von ```StatefulWidgets``` aus kommend nicht losgeschickt worden sind. Packe dazu die Exception in einen ```try/catch``` - Block und schicke sie manuell los:
-
-```dart
-try{
-    /// do stuff
-}catch(e, s){
-    handleError(error: e, stackTrace: s); /// diese Funktion ist im core Ordner definert!
-}
-```
-
-### Crash Logs customizen
-
-- Für ganz viel Info aktiviere Google Analytics in der Firebase Konsole des Projekts.
-- Mehr Infos zu ganz wilden Customisations, findest du [hier][firebase-crashlytics-link].
+- Mehr Infos findest du [hier][firebase-dynamic-links-link].
 
 [flutterfire-cli-link]: https://firebase.flutter.dev/docs/cli/
-[firebase-crashlytics-link]: https://firebase.google.com/docs/crashlytics/customize-crash-reports?authuser=0&platform=flutter
+[firebase-dynamic-links-link]: https://firebase.google.com/docs/dynamic-links/
